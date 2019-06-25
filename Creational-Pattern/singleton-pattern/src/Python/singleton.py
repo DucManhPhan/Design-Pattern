@@ -28,7 +28,7 @@ class Singleton(object):
         else:
             print("Instance already created: ", self.getInstance())
 
-    @classmethod
+    @classmethod    # or use annotation @staticmethod
     def getInstance(self):
         if not self.__instance:
             self.__instance = Singleton()
