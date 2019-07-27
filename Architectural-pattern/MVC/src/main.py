@@ -4,9 +4,9 @@ import sys
 import os
 from dto import UserDto as user_dto
 from model.UserModel import UserModel
+from controller import Controller as controller
 
 
 if __name__ == "__main__":
-    dto = user_dto.UserDto("Tony Buzan 1", "Dan", "Brown", "Tiger1234565", "hugo@gmail.com", 2)
-    usermodel = UserModel()
-    usermodel.insert(dto)
+    controller = controller.Controller()
+    controller.start()

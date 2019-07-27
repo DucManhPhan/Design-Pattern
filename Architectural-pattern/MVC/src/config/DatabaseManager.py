@@ -1,4 +1,7 @@
 # https://www.guru99.com/python-mysql-example.html
+# Issue: When separating the part that manages connection to database, 
+# it has error: weakly-referenced object no longer exists
+
 import mysql.connector
 
 

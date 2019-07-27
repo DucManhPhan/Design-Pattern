@@ -1,14 +1,14 @@
 import tkinter as tk
 from tkinter import ttk
 import tkinter.messagebox as tkMessageBox
-from dto import UserDto
+from dto import UserDto as user_dto
 
 
 MALE = 1
 FEMALE = 2
 
 class View:
-    def __init__(self):
+    def __init__(self, controller):
         # Main window
         self.window = tk.Tk()
         self.window.geometry("500x500")
@@ -90,26 +90,5 @@ class View:
         check_btn_accept.grid(row = 8, column = 0, columnspan = 3, sticky = tk.W)
 
         # Register
-        tk.Button(self.content, text = "Register", command = lambda: self.register()).grid(row = 9, column = 0, columnspan = 3, pady = 10)
-
-    def register(self):
-        # validate data that has just fill in
-        self.invalidate()
-
-        # convert to dto
-
-
-        # 
-
-
-    def start(self):
-        self.window.mainloop()
-
-
-    def invalidate(self):
-        pass
-
-
-if __name__ == "__main__":
-    view = View()
-    view.start()
+        self.register_button = tk.Button(self.content, text = "Register", command = lambda: controller.register())
+        self.register_button.grid(row = 9, column = 0, columnspan = 3, pady = 10)
