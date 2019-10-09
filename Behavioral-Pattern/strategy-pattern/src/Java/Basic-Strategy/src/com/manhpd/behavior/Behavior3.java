@@ -1,4 +1,4 @@
-package com.manhpd;
+package com.manhpd.behavior;
 
 public class Behavior3 implements IBehavior {
 
