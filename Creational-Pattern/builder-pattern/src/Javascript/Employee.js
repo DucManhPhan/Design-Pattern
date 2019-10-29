@@ -50,6 +50,6 @@ class Employee {
             }
         }
 
-        return EmployeeBuilder;
+        return new EmployeeBuilder();
     }
 }
