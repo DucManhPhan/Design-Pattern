@@ -1,9 +1,9 @@
 package com.manhpd;
 
+import com.manhpd.shape_builder.combine_versions.Rectangle;
 import com.manhpd.shape_builder.old.OldRectangle;
 import com.manhpd.shape_builder.other_version.X;
 import com.manhpd.shape_builder.other_version.Y;
-import com.manhpd.shape_builder.refactor_builder_subclass.Rectangle;
 
 public class Application {
 
@@ -58,8 +58,12 @@ public class Application {
 //        System.out.println(rect.toString());
 
         // Or we have
-        Y y = new Y.Builder().withFoo(1).withBar(2).withTaz(5).build();
-        System.out.println(y.getFoo() + " - " + y.getBar() + " - " + y.getTaz());
+//        Y y = new Y.Builder().withFoo(1).withBar(2).withTaz(5).build();
+//        System.out.println(y.getFoo() + " - " + y.getBar() + " - " + y.getTaz());
+
+        // Or we have:
+        Rectangle rectangle = Rectangle.builder().opacity(0.10).height(500).build();
+        System.out.println(rectangle.getOpacity() + " - " + rectangle.getHeight());
     }
 
 }
