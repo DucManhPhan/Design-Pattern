@@ -37,4 +37,8 @@ public class LegacyCode {
         setX(0);
     }
 
+    @Override
+    public String toString() {
+        return "x = " + this.x + ", y = " + this.y;
+    }
 }
