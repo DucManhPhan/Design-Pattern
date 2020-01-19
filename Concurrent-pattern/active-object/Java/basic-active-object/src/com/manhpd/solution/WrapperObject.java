@@ -32,6 +32,7 @@ public class WrapperObject {
                 while (true) {
                     try {
                         queue.take().run();
+                        System.out.println("The current value of LegacyCode is: " + legacyCode.toString());
                     } catch (InterruptedException ex) {
                         System.out.println("Active Object done!");
                         break;
@@ -63,6 +64,10 @@ public class WrapperObject {
         });
     }
 
+    private String toStatus() {
+        return this.legacyCode.toString();
+    }
+
     private void stop() {
         this.processorThread.interrupt();
     }
@@ -72,7 +77,10 @@ public class WrapperObject {
         wrapperObject.startTheActiveObject();
 
         wrapperObject.invokeLegacyOp1();
-//        wrapperObject.invokeLegacyOp2();
+//        System.out.println(wrapperObject.toStatus());
+
+        wrapperObject.invokeLegacyOp2();
+//        System.out.println(wrapperObject.toStatus());
 
         Thread.sleep(5000);
         wrapperObject.stop();
