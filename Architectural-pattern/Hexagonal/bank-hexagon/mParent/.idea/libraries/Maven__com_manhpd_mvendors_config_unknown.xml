@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.manhpd.mvendors:config:unknown">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/manhpd/mvendors/config/unknown/config-unknown.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/manhpd/mvendors/config/unknown/config-unknown-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/manhpd/mvendors/config/unknown/config-unknown-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
