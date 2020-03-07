@@ -1,4 +1,13 @@
 package com.manhpd.mvendors.service;
 
-public class GetAccountBalanceService {
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+public class GetAccountBalanceService implements GetAccountBalanceQuery {
+
+    private final LoadAccountPort loadAccountPort;
+
+
+
 }

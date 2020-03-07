@@ -17,9 +17,14 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <lombok.version>1.18.12</lombok.version>
   </properties>
 
   <dependencies>
-
+      <dependency>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok</artifactId>
+          <version>${lombok.version}</version>
+      </dependency>
   </dependencies>
 </project>
