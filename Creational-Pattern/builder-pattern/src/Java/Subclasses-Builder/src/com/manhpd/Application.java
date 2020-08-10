@@ -1,5 +1,6 @@
 package com.manhpd;
 
+import com.manhpd.nutrition_builder.GMOFacts;
 import com.manhpd.shape_builder.combine_versions.Rectangle;
 import com.manhpd.shape_builder.old.OldRectangle;
 import com.manhpd.shape_builder.other_version.X;
@@ -9,12 +10,12 @@ public class Application {
 
     public static void main(String[] args) {
         // nutrition builder
-//        GMOFacts.Builder b = new GMOFacts.Builder();
-//        b.calories(100).GMO(true);
-//
-//        GMOFacts gmo = b.build();
-//        String result = gmo.toString();
-//        System.out.println(result);
+        GMOFacts.Builder b = new GMOFacts.Builder();
+        b.calories(100).GMO(true);
+
+        GMOFacts gmo = b.build();
+        String result = gmo.toString();
+        System.out.println(result);
 
         // Shape builder
         // This code is not compile
@@ -62,8 +63,8 @@ public class Application {
 //        System.out.println(y.getFoo() + " - " + y.getBar() + " - " + y.getTaz());
 
         // Or we have:
-        Rectangle rectangle = Rectangle.builder().opacity(0.10).height(500).build();
-        System.out.println(rectangle.getOpacity() + " - " + rectangle.getHeight());
+//        Rectangle rectangle = Rectangle.builder().opacity(0.10).height(500).build();
+//        System.out.println(rectangle.getOpacity() + " - " + rectangle.getHeight());
     }
 
 }
