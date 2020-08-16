@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  mysqldb:
+    image: mysql:8.0
+    container_name: mysql
+    ports:
+      - 3307:3306
+    command: --max-connections=1000
+    environment:
+      - MYSQL_DATABASE=order-context
+      - MYSQL_ROOT_PASSWORD=12345
+    volumes:
+      - mysqldb_data:/var/lib/mysql
+    restart: always
+
+volumes:
+  mysqldb_data:
+    driver: local
