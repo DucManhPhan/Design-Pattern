@@ -43,7 +43,7 @@ public class DatabaseConfig {
 
     @Bean(name = "entityManagerFactory")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder,
-                                                                           @Qualifier("dataSource") DataSource dataSource) {
+                                                                       @Qualifier("dataSource") DataSource dataSource) {
         return builder.dataSource(dataSource)
                       .packages("com.manhpd.unitofwork.persistence.entity")
                       .persistenceUnit("main")
@@ -51,7 +51,8 @@ public class DatabaseConfig {
     }
 
     @Bean(name = "transactionManager")
-    public PlatformTransactionManager transactionManager(@Qualifier("entityManagerFactory") EntityManagerFactory entityManagerFactory) {
+    public PlatformTransactionManager transactionManager(@Qualifier("entityManagerFactory")
+                                                         EntityManagerFactory entityManagerFactory) {
         return new JpaTransactionManager(entityManagerFactory);
     }
 

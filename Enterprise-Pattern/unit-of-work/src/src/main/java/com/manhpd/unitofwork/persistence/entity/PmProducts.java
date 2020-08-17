@@ -1,14 +1,12 @@
 package com.manhpd.unitofwork.persistence.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
-public class Products {
+public class PmProducts {
 
     @Id
     @Column(name = "product_id")
@@ -25,5 +23,8 @@ public class Products {
 
     @Column(name = "price")
     private BigDecimal price;
+
+    @OneToMany(mappedBy = "products")
+    private List<PmOrderItems> orderItems;
 
 }

@@ -10,10 +10,10 @@ import java.math.BigDecimal;
 @Table(name = "order_items")
 @NoArgsConstructor
 @Data
-public class OrderItems {
+public class PmOrderItems {
 
     @EmbeddedId
-    private OrderItemsPK id;
+    private PmOrderItemsPK id;
 
     @Column(name = "quantity", nullable = false)
     private int quantity;
@@ -23,5 +23,15 @@ public class OrderItems {
 
     @Column(name = "discount", nullable = true)
     private BigDecimal discount;
+
+    @ManyToOne
+    @MapsId("oder_id")
+    @JoinColumn(name = "order_id")
+    private PmOrders orders;
+
+    @ManyToOne
+    @MapsId("product_id")
+    @JoinColumn(name = "product_id")
+    private PmProducts products;
 
 }

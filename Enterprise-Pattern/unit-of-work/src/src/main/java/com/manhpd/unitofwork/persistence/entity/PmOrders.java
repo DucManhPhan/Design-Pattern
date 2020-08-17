@@ -3,17 +3,15 @@ package com.manhpd.unitofwork.persistence.entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
 @NoArgsConstructor
 @Data
-public class Orders {
+public class PmOrders {
 
     @Id
     @Column(name = "order_id")
@@ -30,5 +28,9 @@ public class Orders {
 
     @Column(name = "status")
     private String status;
+
+    @OneToMany(mappedBy = "orders")
+    private List<PmOrderItems> orderItems;
+
 
 }
