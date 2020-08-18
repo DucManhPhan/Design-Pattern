@@ -30,3 +30,25 @@ CREATE TABLE IF NOT EXISTS order_items (
     FOREIGN KEY (order_id) REFERENCES orders(order_id),
     FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
+
+INSERT INTO orders (order_id, order_date, required_date, shipped_date, status)
+VALUES
+(1, '2020-08-15', '2020-08-20', '2020-07-17', 'pending'),
+(2, '2020-08-12', '2020-08-27', '2020-07-20', 'pending'),
+(3, '2020-08-18', '2020-08-20', '2020-07-19', 'successful')
+;
+
+INSERT INTO products(product_id, product_name, description, quantity_in_stock, price)
+VALUES
+(1, 'sauce bottle', 'good', 10000, 30000),
+(2, 'book', 'good', 3000, 100000),
+(3, 'coca cola', 'good', 2000, 16000)
+;
+
+INSERT INTO order_items(order_id, product_id, quantity, price, discount)
+VALUES
+(1, 2, 4, 400000, 0),
+(1, 3, 2, 32000, 0),
+(2, 1, 2, 60000, 0),
+(3, 2, 10, 3000000, 0)
+;

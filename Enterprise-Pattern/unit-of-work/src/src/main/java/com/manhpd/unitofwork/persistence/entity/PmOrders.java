@@ -29,7 +29,7 @@ public class PmOrders {
     @Column(name = "status")
     private String status;
 
-    @OneToMany(mappedBy = "orders")
+    @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PmOrderItems> orderItems;
 
 

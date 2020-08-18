@@ -1,7 +1,15 @@
 package com.manhpd.unitofwork.domain.order;
 
-import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Orders {
 
     private String id;
@@ -13,5 +21,7 @@ public class Orders {
     private LocalDateTime shippedDate;
 
     private String status;
+
+    List<OrderItems> orderItems;
 
 }
