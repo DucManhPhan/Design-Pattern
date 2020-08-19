@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "products")
-public class PmProducts {
+public class PmProduct {
 
     @Id
     @Column(name = "product_id")
@@ -25,6 +25,6 @@ public class PmProducts {
     private BigDecimal price;
 
     @OneToMany(mappedBy = "products")
-    private List<PmOrderItems> orderItems;
+    private List<PmOrderItem> orderItems;
 
 }

@@ -10,9 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Orders {
-
-    private String id;
+public class Order {
 
     private LocalDateTime orderDate;
 
@@ -22,6 +20,8 @@ public class Orders {
 
     private String status;
 
-    List<OrderItems> orderItems;
+    List<OrderItem> orderItems;
+
+
 
 }

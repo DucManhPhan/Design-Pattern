@@ -11,7 +11,7 @@ import javax.persistence.Embeddable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PmOrderItemsPK {
+public class PmOrderItemPK {
 
     private static long serialVersionUID = 1L;
 
@@ -26,13 +26,13 @@ public class PmOrderItemsPK {
             return true;
         }
 
-        if (!(other instanceof PmOrderItemsPK)) {
+        if (!(other instanceof PmOrderItemPK)) {
             return false;
         }
 
-        PmOrderItemsPK pmOrderItemsPK = (PmOrderItemsPK) other;
-        return this.orderId == pmOrderItemsPK.orderId
-            && this.productId == pmOrderItemsPK.productId;
+        PmOrderItemPK pmOrderItemPK = (PmOrderItemPK) other;
+        return this.orderId == pmOrderItemPK.orderId
+            && this.productId == pmOrderItemPK.productId;
     }
 
     public int hashCode() {

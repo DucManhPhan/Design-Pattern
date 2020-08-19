@@ -11,7 +11,7 @@ import java.util.List;
 @Table(name = "orders")
 @NoArgsConstructor
 @Data
-public class PmOrders {
+public class PmOrder {
 
     @Id
     @Column(name = "order_id")
@@ -30,7 +30,7 @@ public class PmOrders {
     private String status;
 
     @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<PmOrderItems> orderItems;
+    private List<PmOrderItem> orderItems;
 
 
 }
