@@ -1,4 +1,4 @@
-from abs_car import AbsCar
+from .abs_car import AbsCar
 
 class Luxury(AbsCar):
     @property

@@ -1,4 +1,4 @@
-from abs_decorator import AbsDecorator
+from .abs_decorator import AbsDecorator
 
 
 class V6(AbsDecorator):
@@ -9,4 +9,4 @@ class V6(AbsDecorator):
     
     @property
     def cost(self):
-        return self.car.cost + 12000.00
+        return self.car.cost + 1200.00

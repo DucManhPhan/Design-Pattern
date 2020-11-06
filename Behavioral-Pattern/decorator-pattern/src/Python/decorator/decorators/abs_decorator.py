@@ -1,4 +1,4 @@
-from cars.abs_car import AbsCar
+from ..cars.abs_car import AbsCar
 
 class AbsDecorator(AbsCar):
     def __init__(self, car):
