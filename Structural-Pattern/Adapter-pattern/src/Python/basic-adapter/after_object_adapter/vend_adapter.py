@@ -1,6 +1,5 @@
 from abs_adapter import AbsAdapter
 
-
 class VendAdapter(AbsAdapter):
     @property
     def name(self):
@@ -9,6 +8,6 @@ class VendAdapter(AbsAdapter):
     @property
     def address(self):
         return '{} {}'.format(
-            self.adaptee.name,
+            self.adaptee.number,
             self.adaptee.street
         )
