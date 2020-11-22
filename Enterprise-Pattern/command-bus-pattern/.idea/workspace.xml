@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5eb49a30-ebdc-4553-89e5-7c106fab3fd6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/manhpd/Application.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/manhpd/RegistrationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/manhpd/bus/ICommandBus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/manhpd/command/ICommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/manhpd/command/RegisterUserCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/manhpd/domain/dto/UserDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/manhpd/domain/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/manhpd/handler/ICommandHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/manhpd/handler/RegisterUserCommandHandler.java" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.2.1\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1kECJ4MUObQ6OMvepyob3Asl8ip" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5eb49a30-ebdc-4553-89e5-7c106fab3fd6" name="Default Changelist" comment="" />
+      <created>1605256288344</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1605256288344</updated>
+      <workItem from="1605256289358" duration="2502000" />
+      <workItem from="1605422695163" duration="3535000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1605258033125">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.4.1920.1040@0.0.1920.1040" timestamp="1605258033125" />
+    <state x="625" y="224" width="680" height="591" key="NewModule_or_Project.wizard" timestamp="1605258038231">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="625" y="224" width="680" height="591" key="NewModule_or_Project.wizard/0.0.1920.1040/-1920.4.1920.1040@0.0.1920.1040" timestamp="1605258038231" />
+    <state x="342" y="140" key="new project wizard" timestamp="1605258008225">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="342" y="140" key="new project wizard/0.0.1920.1040/-1920.4.1920.1040@0.0.1920.1040" timestamp="1605258008225" />
+  </component>
+</project>
