@@ -1,18 +1,21 @@
 package com.manhpd.bus;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
+import com.google.inject.Inject;
 import com.google.inject.TypeLiteral;
-import com.manhpd.CommandHandlerModule;
 import com.manhpd.command.ICommand;
 import com.manhpd.handler.ICommandHandler;
+import com.manhpd.utils.CommandHandlerNotFoundException;
+import com.manhpd.utils.HandlerUtils;
+
+import java.util.Set;
 
 public class CommandBusImpl implements ICommandBus {
 
-    private final Injector injector;
+    private Set<ICommandHandler> commandHandlers;
 
-    public CommandBusImpl() {
-        this.injector = Guice.createInjector(new CommandHandlerModule());
+    @Inject
+    public CommandBusImpl(Set<ICommandHandler> commandHandlers) {
+        this.commandHandlers = commandHandlers;
     }
 
     @Override
@@ -33,6 +36,30 @@ public class CommandBusImpl implements ICommandBus {
              private static final long serialVersionUID = 1L;
         };
 
-        return null;
+        return this.commandHandlers.stream()
+                            .filter(handler -> HandlerUtils.canHandle(handler.getClass(), commandClazz))
+                            .findFirst()
+                            .orElseThrow(() -> new CommandHandlerNotFoundException(command));
     }
+
+//    private void closeAll(Injector injector) {
+//        for(Map.Entry<Key<?>, Binding<?>> entry : injector.getAllBindings().entrySet()) {
+//            final Binding<?> binding = entry.getValue();
+//            if (Closeable.class.isAssignableFrom(
+//                    entry.getKey().getTypeLiteral().getRawType())) {
+//                binding.accept(new DefaultBindingScopingVisitor<Void>() {
+//                    @Override public Void visitEagerSingleton() {
+//                        Closeable instance = (Closeable) (binding.getProvider().get());
+//                        try {
+//                            instance.close();
+//                        } catch (IOException e) {
+//                            // log this?
+//                        }
+//                        return null;
+//                    }
+//                });
+//            }
+//        }
+//    }
+
 }

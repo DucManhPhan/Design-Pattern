@@ -7,13 +7,11 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class WithdrawCommand implements ICommand<Void> {
+public class RegisterCommand implements ICommand<Void> {
 
     private String username;
 
-    private String amount;
-
-    private String account;
+    private String password;
 
 }
 

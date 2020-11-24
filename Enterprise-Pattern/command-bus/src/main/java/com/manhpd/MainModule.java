@@ -7,6 +7,8 @@ import com.manhpd.bus.ICommandBus;
 public class MainModule extends AbstractModule {
     @Override
     protected void configure() {
-        bind(ICommandBus.class).to(CommandBusImpl.class);
+        this.install(new CommandHandlerModule());
+
+        this.bind(ICommandBus.class).to(CommandBusImpl.class);
     }
 }
