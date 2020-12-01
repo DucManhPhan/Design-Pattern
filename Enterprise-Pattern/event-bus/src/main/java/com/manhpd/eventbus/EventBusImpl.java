@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -39,13 +40,19 @@ public class EventBusImpl implements EventBus {
 
                                                  return annotation.value();
                                              }));
+        this.isInit = true;
     }
 
     @Override
     public void publish(GlobalEvent event) {
         if (!this.isInit) {
-            throw new RuntimeException();
+            throw new RuntimeException("Not init event bus");
         }
+
+        List<GlobalEventSubscriber> eventSubscribers = this.eventSubscriberMap.getOrDefault(event.getEventName(), new ArrayList<>());
+        eventSubscribers.forEach(subscriber -> {
+            subscriber.handleEvent(event);
+        });
     }
 
     @PreDestroy
