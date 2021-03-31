@@ -1,4 +1,4 @@
-package com.manhpd;
+package com.manhpd.composite_specification;
 
 public class AndSpecification<T> extends CompositeSpecification<T>  {
 

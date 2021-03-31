@@ -1,4 +1,4 @@
-package com.manhpd;
+package com.manhpd.composite_specification;
 
 public abstract class CompositeSpecification<T> implements ISpecification<T> {
 

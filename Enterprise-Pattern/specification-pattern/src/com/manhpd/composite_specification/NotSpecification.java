@@ -1,4 +1,4 @@
-package com.manhpd;
+package com.manhpd.composite_specification;
 
 public class NotSpecification<T> extends CompositeSpecification<T> {
 
