@@ -19,7 +19,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <spring-boot-dependencies.version>2.1.9.RELEASE</spring-boot-dependencies.version>
     <spring-context.version>5.2.4.RELEASE</spring-context.version>
-    <junit.version>4.12</junit.version>
+    <junit.version>4.13.1</junit.version>
     <validation-api.version>2.0.1.Final</validation-api.version>
   </properties>
 
