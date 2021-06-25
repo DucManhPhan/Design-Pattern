@@ -2,13 +2,13 @@ The first thing is that we have two automated machines.
 - a nack machine
 - an automated teller machine - ATM
 
-The below image describes the interface of a snack machine.
-
-![](./img/snack-machine-interface.png)
-
 Belows are some steps of our domain.
 1. Our task is to model the snack machine so that it can sell snacks in exchange for cash.
 
+   The below image describes the interface of a snack machine.
+
+   ![](./img/snack-machine-interface.png)
+   
     What we are going to focus on is the actual business logic behind the device, what rules it should follow when dealing with taking money in, returning change, selling products, and so on.
 
     Snack machine will have three slots for snacks.
@@ -43,5 +43,7 @@ Belows are some steps of our domain.
    - Press **Take Money** button, the number of $1 notes inside the ATM is decreased.
    
 3. Head office
+
+   ![](./img/head-office.png)
 
    We will need **Head office** to move the accumulated cash from ATMs to snack machines, and also keep a record of the balance we have of all charges made by our ATMs.
