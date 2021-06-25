@@ -8,6 +8,7 @@
 - [About designing value objects](#about-designing-value-objects)
 - [About JVM](#about-jvm)
 - [Note about Entity and Value object base class](#note-about-entity-and-value-object-base-class)
+- [Note about testing for Domain Model](#note-about-testing-for-domain-model)
 
 
 <br>
@@ -50,7 +51,11 @@ Prefer value objects to entities:
 - Value objects are light-weight.
 - Put most of business logic to value objects.
 - entities acts as wrappers.
+- Should move logic from Entities to Value Objects.
 
+A good approach for designing value object is to compare it to an integer. If they have essentially the same semantics, we can be sure the class we are looking at is a value object.
+
+Value Objects are lightweight and therefore are extremely easy to maintain and reason about.
 
 <br>
 
@@ -82,10 +87,26 @@ The default equals() implementation gives us only reference equality.
 
 <br>
 
+## Note about testing for Domain Model
+
+1. Code-first approach for experiments
+
+2. Test-first approach after the experiments
+
+3. Always cover the model with unit tests
+
+<br>
+
 References:
 
-[]()
+[Domain Driven Design with Spring Boot: Enterprise application from scratch by Ajay Kumar](https://www.amazon.com/Domain-Driven-Design-Spring-Boot-ebook/dp/B07K5W7CTZ)
 
-[]()
+[Domain Driven Design Distilled by Vernon Vaughn](https://www.amazon.com/Domain-Driven-Design-Distilled-Vaughn-Vernon-ebook/dp/B01JJSGE5S)
 
-[]()
+[Implementing Domain-Driven Design by Vernon Vaughn](https://www.amazon.com/Implementing-Domain-Driven-Design-Vaughn-Vernon-ebook/dp/B00BCLEBN8)
+
+[Patterns, principles, and practices of Domain-Driven Design by Scott Millett](https://www.amazon.com/Patterns-Principles-Practices-Domain-Driven-Design-ebook/dp/B00XLYUA0W)
+
+[Hands on Domain-Driven Design with .NET Core by Alexey Zimarev](https://www.amazon.com/Hands-Domain-Driven-Design-NET-ebook/dp/B07C5WSR9B)
+
+[Domain-Driven Design: Tackling complexity in the Heart of Software by Evans Eric](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software-ebook/dp/B00794TAUG)
