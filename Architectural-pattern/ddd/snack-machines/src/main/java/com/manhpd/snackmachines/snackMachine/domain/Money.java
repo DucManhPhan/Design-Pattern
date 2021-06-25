@@ -18,6 +18,30 @@ public class Money extends ValueObject<Money> {
 
     public Money(int oneCentCount, int tenCentCount, int quarterCount,
                  int oneDollarCount, int fiveDollarCount, int twentyDollarCount) {
+        if (oneCentCount < 0) {
+            throw new UnsupportedOperationException();
+        }
+
+        if (tenCentCount < 0) {
+            throw new UnsupportedOperationException();
+        }
+
+        if (quarterCount < 0) {
+            throw new UnsupportedOperationException();
+        }
+
+        if (oneDollarCount < 0) {
+            throw new UnsupportedOperationException();
+        }
+
+        if (fiveDollarCount < 0) {
+            throw new UnsupportedOperationException();
+        }
+
+        if (twentyDollarCount < 0) {
+            throw new UnsupportedOperationException();
+        }
+
         this.oneCentCount = oneCentCount;
         this.tenCentCount = tenCentCount;
         this.quarterCount = quarterCount;
