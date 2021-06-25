@@ -65,7 +65,6 @@ When we call the contains() method on the list of entities, JVM compares the obj
 
 The default equals() implementation gives us only reference equality.
 
-
 <br>
 
 ## Note about Entity and Value object base class
