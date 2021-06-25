@@ -1,6 +1,8 @@
 package com.manhpd.snackmachines.snackMachine.domain;
 
-public class SnackMachine {
+import com.manhpd.snackmachines.shr.entity.Entity;
+
+public class SnackMachine extends Entity {
 
     private Money moneyInside;
 

@@ -1,6 +1,8 @@
 package com.manhpd.snackmachines.snackMachine.domain;
 
-public class Money {
+import com.manhpd.snackmachines.shr.valueObject.ValueObject;
+
+public class Money extends ValueObject<Money> {
 
     private final int oneCentCount;
 
@@ -34,5 +36,27 @@ public class Money {
                 money1.twentyDollarCount + money2.twentyDollarCount);
 
         return sum;
+    }
+
+    @Override
+    protected boolean equalsCore(Money other) {
+        return this.oneCentCount == other.oneCentCount
+                && this.tenCentCount == other.tenCentCount
+                && this.quarterCount == other.quarterCount
+                && this.oneDollarCount == other.oneDollarCount
+                && this.fiveDollarCount == other.fiveDollarCount
+                && this.twentyDollarCount == other.twentyDollarCount;
+    }
+
+    @Override
+    protected int getHashCodeCore() {
+        int hashCode = oneCentCount;
+        hashCode = (hashCode * 397) ^ tenCentCount;
+        hashCode = (hashCode * 397) ^ quarterCount;
+        hashCode = (hashCode * 397) ^ oneDollarCount;
+        hashCode = (hashCode * 397) ^ fiveDollarCount;
+        hashCode = (hashCode * 397) ^ twentyDollarCount;
+
+        return hashCode;
     }
 }
