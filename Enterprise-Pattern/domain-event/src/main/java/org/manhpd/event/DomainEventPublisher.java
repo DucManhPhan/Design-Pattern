@@ -75,7 +75,7 @@ public class DomainEventPublisher {
 
     private <T> void registerSubscriber(DomainEventSubscriber<T> subscriber) {
         if (this.isPublishing()) {
-            throw new IllegalStateException("他のイベントのpublish処理中にsubscribeすることはできません。");
+            throw new IllegalStateException("");
         }
 
         this.subscribers().add(subscriber);
