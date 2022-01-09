@@ -1,0 +1,5 @@
+buckpal:
+  transferThreshold: 10000
+
+server:
+  port: 8080
