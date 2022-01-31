@@ -7,6 +7,7 @@ import com.manhpd.buckpal.account.domain.Account.AccountId;
 import com.manhpd.buckpal.account.domain.Activity;
 import com.manhpd.buckpal.common.PersistenceAdapter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
@@ -17,11 +18,14 @@ import java.util.List;
 class AccountPersistenceAdapter implements LoadAccountPort,
                                            UpdateAccountStatePort {
 
-    private final SpringDataAccountRepository accountRepository;
+    @Autowired
+    private SpringDataAccountRepository accountRepository;
 
-    private final ActivityRepository activityRepository;
+    @Autowired
+    private ActivityRepository activityRepository;
 
-    private final AccountMapper accountMapper;
+    @Autowired
+    private AccountMapper accountMapper;
 
     @Override
     public Account loadAccount(

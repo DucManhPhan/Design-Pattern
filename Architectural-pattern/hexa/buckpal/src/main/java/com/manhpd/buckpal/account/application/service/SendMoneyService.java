@@ -9,6 +9,7 @@ import com.manhpd.buckpal.account.domain.Account;
 import com.manhpd.buckpal.account.domain.Account.AccountId;
 import com.manhpd.buckpal.common.UseCase;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
@@ -18,13 +19,17 @@ import java.time.LocalDateTime;
 @Transactional
 public class SendMoneyService implements SendMoneyUseCase {
 
-    private final LoadAccountPort loadAccountPort;
+    @Autowired
+    private LoadAccountPort loadAccountPort;
 
-    private final AccountLock accountLock;
+    @Autowired
+    private AccountLock accountLock;
 
-    private final UpdateAccountStatePort updateAccountStatePort;
+    @Autowired
+    private UpdateAccountStatePort updateAccountStatePort;
 
-    private final MoneyTransferProperties moneyTransferProperties;
+    @Autowired
+    private MoneyTransferProperties moneyTransferProperties;
 
     @Override
     public boolean sendMoney(SendMoneyCommand command) {

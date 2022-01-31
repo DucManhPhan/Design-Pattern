@@ -20,18 +20,18 @@ public class Account {
     /**
      * The unique ID of the account.
      */
-    @Getter private final AccountId id;
+    @Getter private AccountId id;
 
     /**
      * The baseline balance of the account. This was the balance of the account before the first
      * activity in the activityWindow.
      */
-    @Getter private final Money baselineBalance;
+    @Getter private Money baselineBalance;
 
     /**
      * The window of latest activities on this account.
      */
-    @Getter private final ActivityWindow activityWindow;
+    @Getter private ActivityWindow activityWindow;
 
     /**
      * Creates an {@link Account} entity without an ID. Use to create a new entity that is not yet
@@ -111,6 +111,7 @@ public class Account {
     }
 
     @Value
+    @Getter
     public static class AccountId {
         private Long value;
     }
