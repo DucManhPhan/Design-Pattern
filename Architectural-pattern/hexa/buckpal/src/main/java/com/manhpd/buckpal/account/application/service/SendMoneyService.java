@@ -19,17 +19,22 @@ import java.time.LocalDateTime;
 @Transactional
 public class SendMoneyService implements SendMoneyUseCase {
 
-    @Autowired
     private LoadAccountPort loadAccountPort;
 
-    @Autowired
     private AccountLock accountLock;
 
-    @Autowired
     private UpdateAccountStatePort updateAccountStatePort;
 
-    @Autowired
     private MoneyTransferProperties moneyTransferProperties;
+
+    @Autowired
+    public SendMoneyService(LoadAccountPort loadAccountPort, AccountLock accountLock,
+                            UpdateAccountStatePort updateAccountStatePort, MoneyTransferProperties moneyTransferProperties) {
+        this.loadAccountPort = loadAccountPort;
+        this.accountLock = accountLock;
+        this.updateAccountStatePort = updateAccountStatePort;
+        this.moneyTransferProperties = moneyTransferProperties;
+    }
 
     @Override
     public boolean sendMoney(SendMoneyCommand command) {
