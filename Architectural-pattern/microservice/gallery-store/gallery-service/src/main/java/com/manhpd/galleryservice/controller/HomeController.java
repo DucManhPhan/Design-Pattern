@@ -21,7 +21,7 @@ public class HomeController {
     private Environment env;
 
     public String home() {
-        return "Hello, world with Gallery service";
+        return "Hello world from Gallery service";
     }
 
     @RequestMapping("/{id}")

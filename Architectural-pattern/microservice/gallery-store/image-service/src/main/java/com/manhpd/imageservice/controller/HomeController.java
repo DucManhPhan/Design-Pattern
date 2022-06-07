@@ -17,7 +17,7 @@ public class HomeController {
     private Environment env;
 
     public String home() {
-        return "Hello world";
+        return "Hello world from Image service";
     }
 
     @RequestMapping("/images")
