@@ -1,0 +1,22 @@
+server:
+  port: 8762
+
+eureka:
+  client:
+    serviceUrl:
+      defaulZone: http://localhost:8761/eureka
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+      - id: galleryService
+        uri: lb://GALLERY-SERVICE
+        predicates:
+        - Path=/gallery/**
+      - id: imageService
+        uri: lb://IMAGE-SERVICE
+        predicates:
+        - Path=/image/**
