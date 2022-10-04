@@ -8,5 +8,5 @@ import lombok.Data;
 public class OpenAccountCommand extends BaseCommand {
     private String accountHolder;
     private AccountType accountType;
-    private double openBalance;
+    private double openingBalance;
 }
