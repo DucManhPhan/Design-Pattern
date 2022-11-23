@@ -7,9 +7,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="cqrs.core" />
-        <module name="account.cmd" />
         <module name="account.common" />
         <module name="account.query" />
+        <module name="account.cmd" />
         <module name="bank-account" />
       </profile>
     </annotationProcessing>
