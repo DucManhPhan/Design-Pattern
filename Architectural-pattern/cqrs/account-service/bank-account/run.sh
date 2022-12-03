@@ -1,6 +1,8 @@
+# Create network bridge for MongoDB and MySQL
+docker network create --attachable -d bridge techbankNet
 
 # Run Kafka
-docker-compose up
+docker-compose up -d
 
 # Run MongoDB
 docker run -it -d --name mongo-container \
