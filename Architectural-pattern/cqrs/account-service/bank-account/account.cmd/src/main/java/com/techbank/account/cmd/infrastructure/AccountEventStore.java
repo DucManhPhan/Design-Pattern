@@ -46,7 +46,7 @@ public class AccountEventStore implements EventStore {
                     .build();
 
             var persistedEvent = this.eventStoreRepository.save(eventModel);
-            if (persistedEvent.getId().isEmpty()) {
+            if (!persistedEvent.getId().isEmpty()) {
                 this.eventProducer.produce(event.getClass().getSimpleName(), event);
             }
         }
