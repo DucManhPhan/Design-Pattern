@@ -1,5 +1,12 @@
-# Create network bridge for MongoDB and MySQL
-docker network create --attachable -d bridge techbankNet
+
+if [ ! "$(docker network ls | grep techbankNet)" ]; then
+  echo "Creating techbankNet network ..."
+
+  # Create network bridge for MongoDB and MySQL
+  docker network create --attachable -d bridge techbankNet
+else
+  echo "techbankNet network exists"
+fi
 
 # Run Kafka
 docker-compose up -d
