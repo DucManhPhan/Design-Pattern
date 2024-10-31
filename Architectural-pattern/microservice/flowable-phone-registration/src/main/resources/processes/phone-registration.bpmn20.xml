@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions
+        xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC"
+        xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath"
+        targetNamespace="http://www.flowable.org/processdef">
+
+    <process id="phone-registration" name="Verified phone registration process" isExecutable="true">
+
+        <documentation>Verified phone registration process.</documentation>
+
+        <startEvent id="startPhoneRegistration" name="Phone Registration Start"/>
+        <sequenceFlow id="startPhoneRegistration_sendToken_flow" sourceRef="startPhoneRegistration" targetRef="sendToken"/>
+        <sequenceFlow id="startPhoneRegistration_inputToken_flow" sourceRef="startPhoneRegistration" targetRef="inputToken"/>
+
+        <serviceTask id="sendToken" name="Send Token" flowable:delegateExpression="${sendTokenTask}"/>
+        <sequenceFlow id="sendToken_flow" sourceRef="sendToken" targetRef="tokenAttempts"/>
+
+        <exclusiveGateway id="tokenAttempts"/>
+        <sequenceFlow id="tokenAttempts_more_flow" name="More attempts available" sourceRef="tokenAttempts" targetRef="triggerNewTokenSend">
+            <conditionExpression xsi:type="tFormalExpression"><![CDATA[${phoneRegistration.attempts < 3}]]></conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow id="tokenAttempts_finished_flow" name="Max attempts reached" sourceRef="tokenAttempts" targetRef="timer">
+            <conditionExpression xsi:type="tFormalExpression"><![CDATA[${phoneRegistration.attempts == 3}]]></conditionExpression>
+        </sequenceFlow>
+
+        <userTask id="triggerNewTokenSend" name="Trigger New Token Send"/>
+        <sequenceFlow id="triggerTokenSend_flow" sourceRef="triggerNewTokenSend" targetRef="sendToken"/>
+
+        <boundaryEvent id="timeLimitEvent" name="Phone Registration Time Limit" cancelActivity="true" attachedToRef="triggerNewTokenSend">
+            <timerEventDefinition>
+                <timeDuration>PT3M</timeDuration>
+            </timerEventDefinition>
+        </boundaryEvent>
+
+        <sequenceFlow id="timeLimitEvent_flow" sourceRef="timeLimitEvent" targetRef="endEvent"/>
+
+        <intermediateCatchEvent id="timer" name="Wait Token to Invalidate">
+            <timerEventDefinition>
+                <timeDuration>PT1M</timeDuration>
+            </timerEventDefinition>
+        </intermediateCatchEvent>
+
+        <sequenceFlow id="timer_flow" sourceRef="timer" targetRef="endEvent"/>
+
+        <endEvent id="endEvent" name="End Process Execution"/>
+
+        <userTask id="inputToken" name="Input Token"/>
+
+        <sequenceFlow id="inputToken_flow" sourceRef="inputToken" targetRef="phoneValidationFork"/>
+
+        <parallelGateway id="phoneValidationFork"/>
+
+        <sequenceFlow id="phoneValidationFork_setPhoneStatus_flow" sourceRef="phoneValidationFork" targetRef="setPhoneStatus"></sequenceFlow>
+        <sequenceFlow id="phoneValidationFork_sendNotificationMail_flow" sourceRef="phoneValidationFork" targetRef="sendNotificationMail"></sequenceFlow>
+
+        <serviceTask id="setPhoneStatus" name="Set Validated Phone" flowable:delegateExpression="${setPhoneStatusTask}"/>
+        <sequenceFlow id="setPhoneStatus_flow" sourceRef="setPhoneStatus" targetRef="phoneValidationJoin"></sequenceFlow>
+
+        <serviceTask id="sendNotificationMail" name="Send Notification Mail" flowable:delegateExpression="${sendNotificationEmailTask}"/>
+        <sequenceFlow id="sendNotificationMail_flow" sourceRef="sendNotificationMail" targetRef="phoneValidationJoin"></sequenceFlow>
+
+        <parallelGateway id="phoneValidationJoin"/>
+
+        <sequenceFlow id="phoneValidationJoin_flow" sourceRef="phoneValidationJoin" targetRef="terminateProcess"></sequenceFlow>
+
+        <endEvent id="terminateProcess" name="Terminate Process">
+            <terminateEventDefinition/>
+        </endEvent>
+
+    </process>
+
+    <!-- Process Diagram -->
+    <bpmndi:BPMNDiagram id="BPMNDiagram_phone-registration">
+        <bpmndi:BPMNPlane bpmnElement="phone-registration" id="BPMNPlane_phone-registration">
+            <bpmndi:BPMNShape bpmnElement="startPhoneRegistration" id="BPMNShape_startPhoneRegistration">
+                <omgdc:Bounds height="30.0" width="30.0" x="30.0" y="240.70710678118655"></omgdc:Bounds>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="sendToken" id="BPMNShape_sendToken">
+                <omgdc:Bounds height="60.0" width="100.0" x="195.0" y="105.0"></omgdc:Bounds>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="tokenAttempts" id="BPMNShape_tokenAttempts">
+                <omgdc:Bounds height="40.0" width="40.0" x="360.0" y="115.0"></omgdc:Bounds>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="triggerNewTokenSend" id="BPMNShape_triggerNewTokenSend">
+                <omgdc:Bounds height="60.0" width="100.0" x="195.0" y="195.0"></omgdc:Bounds>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="timeLimitEvent" id="BPMNShape_timeLimitEvent">
+                <omgdc:Bounds height="31.0" width="31.0" x="260.20710678118655" y="240.20710678118655"></omgdc:Bounds>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="timer" id="BPMNShape_timer">
+                <omgdc:Bounds height="31.000000000000014" width="31.000000000000057" x="509.99999999999994" y="119.49999999999999"></omgdc:Bounds>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="endEvent" id="BPMNShape_endEvent">
+                <omgdc:Bounds height="28.000000000000014" width="28.0" x="675.0" y="120.99999999999999"></omgdc:Bounds>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="inputToken" id="BPMNShape_inputToken">
+                <omgdc:Bounds height="60.0" width="100.0" x="195.0" y="359.95224545880984"></omgdc:Bounds>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="phoneValidationFork" id="BPMNShape_phoneValidationFork">
+                <omgdc:Bounds height="40.0" width="40.0" x="376.313711161483" y="369.95224545880984"></omgdc:Bounds>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="setPhoneStatus" id="BPMNShape_setPhoneStatus">
+                <omgdc:Bounds height="60.0" width="99.99999999999994" x="458.1210396748489" y="310.8678483507903"></omgdc:Bounds>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="sendNotificationMail" id="BPMNShape_sendNotificationMail">
+                <omgdc:Bounds height="60.0" width="100.0" x="458.1210396748488" y="425.39810826950253"></omgdc:Bounds>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="phoneValidationJoin" id="BPMNShape_phoneValidationJoin">
+                <omgdc:Bounds height="40.0" width="40.0" x="570.0" y="369.95224545880984"></omgdc:Bounds>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="terminateProcess" id="BPMNShape_terminateProcess">
+                <omgdc:Bounds height="28.0" width="28.0" x="675.0" y="375.95224545880984"></omgdc:Bounds>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNEdge bpmnElement="timeLimitEvent_flow" id="BPMNEdge_timeLimitEvent_flow">
+                <omgdi:waypoint x="291.15710660586086" y="255.70710678118655"></omgdi:waypoint>
+                <omgdi:waypoint x="603.9999796549479" y="255.70710678118655"></omgdi:waypoint>
+                <omgdi:waypoint x="603.9999796549479" y="135.0"></omgdi:waypoint>
+                <omgdi:waypoint x="675.0" y="135.0"></omgdi:waypoint>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="tokenAttempts_finished_flow" id="BPMNEdge_tokenAttempts_finished_flow">
+                <omgdi:waypoint x="399.943149038415" y="135.0"></omgdi:waypoint>
+                <omgdi:waypoint x="509.99999999999994" y="135.0"></omgdi:waypoint>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="timer_flow" id="BPMNEdge_timer_flow">
+                <omgdi:waypoint x="540.9499992933622" y="135.0"></omgdi:waypoint>
+                <omgdi:waypoint x="675.0" y="135.0"></omgdi:waypoint>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="sendToken_flow" id="BPMNEdge_sendToken_flow">
+                <omgdi:waypoint x="294.95000000000005" y="135.0"></omgdi:waypoint>
+                <omgdi:waypoint x="360.0" y="135.0"></omgdi:waypoint>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="startPhoneRegistration_inputToken_flow" id="BPMNEdge_startPhoneRegistration_inputToken_flow">
+                <omgdi:waypoint x="59.94999805832258" y="255.70710678118655"></omgdi:waypoint>
+                <omgdi:waypoint x="142.0" y="255.70710678118655"></omgdi:waypoint>
+                <omgdi:waypoint x="142.0" y="389.95224545880984"></omgdi:waypoint>
+                <omgdi:waypoint x="195.0" y="389.95224545880984"></omgdi:waypoint>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="phoneValidationJoin_flow" id="BPMNEdge_phoneValidationJoin_flow">
+                <omgdi:waypoint x="609.9399344096871" y="389.95224545880984"></omgdi:waypoint>
+                <omgdi:waypoint x="675.0" y="389.95224545880984"></omgdi:waypoint>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="startPhoneRegistration_sendToken_flow" id="BPMNEdge_startPhoneRegistration_sendToken_flow">
+                <omgdi:waypoint x="59.94999805832258" y="255.70710678118655"></omgdi:waypoint>
+                <omgdi:waypoint x="142.0" y="255.70710678118655"></omgdi:waypoint>
+                <omgdi:waypoint x="142.0" y="135.0"></omgdi:waypoint>
+                <omgdi:waypoint x="194.999999999992" y="135.0"></omgdi:waypoint>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="sendNotificationMail_flow" id="BPMNEdge_sendNotificationMail_flow">
+                <omgdi:waypoint x="558.0710396748052" y="455.39810826950253"></omgdi:waypoint>
+                <omgdi:waypoint x="590.0" y="455.39810826950253"></omgdi:waypoint>
+                <omgdi:waypoint x="590.0" y="409.8674338725412"></omgdi:waypoint>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="phoneValidationFork_setPhoneStatus_flow" id="BPMNEdge_phoneValidationFork_setPhoneStatus_flow">
+                <omgdi:waypoint x="396.313711161483" y="369.95224545880984"></omgdi:waypoint>
+                <omgdi:waypoint x="396.313711161483" y="340.8678483507903"></omgdi:waypoint>
+                <omgdi:waypoint x="458.1210396748489" y="340.8678483507903"></omgdi:waypoint>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="phoneValidationFork_sendNotificationMail_flow" id="BPMNEdge_phoneValidationFork_sendNotificationMail_flow">
+                <omgdi:waypoint x="396.313711161483" y="409.88702710699897"></omgdi:waypoint>
+                <omgdi:waypoint x="396.313711161483" y="455.39810826950253"></omgdi:waypoint>
+                <omgdi:waypoint x="458.12103967475366" y="455.39810826950253"></omgdi:waypoint>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="setPhoneStatus_flow" id="BPMNEdge_setPhoneStatus_flow">
+                <omgdi:waypoint x="558.0710396748489" y="340.8678483507903"></omgdi:waypoint>
+                <omgdi:waypoint x="590.0" y="340.8678483507903"></omgdi:waypoint>
+                <omgdi:waypoint x="590.0" y="369.95224545880984"></omgdi:waypoint>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="triggerTokenSend_flow" id="BPMNEdge_triggerTokenSend_flow">
+                <omgdi:waypoint x="245.0" y="195.0"></omgdi:waypoint>
+                <omgdi:waypoint x="245.0" y="164.95"></omgdi:waypoint>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="tokenAttempts_more_flow" id="BPMNEdge_tokenAttempts_more_flow">
+                <omgdi:waypoint x="380.0" y="154.93892896781352"></omgdi:waypoint>
+                <omgdi:waypoint x="380.0" y="225.0"></omgdi:waypoint>
+                <omgdi:waypoint x="294.95000000000005" y="225.0"></omgdi:waypoint>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="inputToken_flow" id="BPMNEdge_inputToken_flow">
+                <omgdi:waypoint x="294.95000000000005" y="389.95224545880984"></omgdi:waypoint>
+                <omgdi:waypoint x="376.313711161483" y="389.95224545880984"></omgdi:waypoint>
+            </bpmndi:BPMNEdge>
+        </bpmndi:BPMNPlane>
+    </bpmndi:BPMNDiagram>
+
+</definitions>

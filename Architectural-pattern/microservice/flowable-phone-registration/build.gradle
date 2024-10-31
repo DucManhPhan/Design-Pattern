@@ -1,0 +1,66 @@
+buildscript {
+    ext {
+
+        // Spring Boot
+        spring_boot_version = '2.3.9.RELEASE'
+        spring_dependency_management = '1.0.8.RELEASE'
+
+        // Flowable Version
+        flowable_version = '6.6.0'
+
+        // In Memory Database
+        h2_database_version = '1.4.200'
+
+        // Lombok
+        lombok_version = '1.18.8'
+
+        // SLF4J
+        slf4j_version = '1.7.30'
+    }
+}
+
+plugins {
+    id 'java'
+    id "org.springframework.boot" version "$spring_boot_version"
+    id 'io.spring.dependency-management' version "$spring_dependency_management"
+}
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+dependencies {
+    // Spring Boot
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // Flowable
+    implementation "org.flowable:flowable-spring-boot-starter-process:${flowable_version}"
+    implementation "org.flowable:flowable-spring-boot-starter-actuator:${flowable_version}"
+    implementation "org.flowable:flowable-spring-boot-starter-process-rest:${flowable_version}"
+
+    // SLF4J
+    implementation "org.slf4j:slf4j-api:$slf4j_version"
+
+    // H2 Database
+    implementation "com.h2database:h2:$h2_database_version"
+
+    // Lombok
+    annotationProcessor "org.projectlombok:lombok:${lombok_version}"
+    compileOnly "org.projectlombok:lombok:${lombok_version}"
+
+    // Test Dependencies
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation "org.mockito:mockito-junit-jupiter:2.23.0"
+}
+
+test {
+    useJUnitPlatform()
+}
